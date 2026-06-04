@@ -12,7 +12,7 @@ on:
 
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
-  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm_modules
 
 jobs:
   build:
@@ -23,25 +23,23 @@ jobs:
 
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
-          path: "**/cpm_modules"
+          path: ${{ env.CPM_SOURCE_CACHE }}
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: Install dependencies
         uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
 
-      - name: build and install library
+      - name: Build and install library
         run: |
-          cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
-          sudo cmake --build build --target install
-          rm -rf build
+          cmake -S. -B.build -DCMAKE_BUILD_TYPE=Release
+          sudo cmake --build .build --target install
+          rm -rf .build
 
-      - name: configure
-        run: cmake -Stest -Bbuild -DTEST_INSTALLED_VERSION=1
+      - name: Configure
+        run: cmake -Stest -B.build -DTEST_INSTALLED_VERSION=1
 
-      - name: build
-        run: cmake --build build --config Debug -j4
+      - name: Build tests
+        run: cmake --build .build --config Debug -j4
 
-      - name: test
-        run: |
-          cd build
-          ctest --build-config Debug
+      - name: Test
+        run: ctest --test-dir .build --build-config Debug

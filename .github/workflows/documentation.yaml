@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm_modules
 
 permissions:
   contents: write
@@ -20,7 +20,7 @@ jobs:
 
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
-          path: "**/cpm_modules"
+          path: ${{ env.CPM_SOURCE_CACHE }}
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: Install dependencies

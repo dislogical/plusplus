@@ -11,26 +11,30 @@ on:
       - main
 
 env:
-  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm_modules
 
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
-          path: "**/cpm_modules"
+          path: ${{ env.CPM_SOURCE_CACHE }}
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: Install dependencies
         uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
 
       - name: Configure
-        run: cmake -Stest -Bbuild
+        run: cmake -Stest -B.build
 
       - name: Lint
         uses: cpp-linter/cpp-linter-action@v2
@@ -41,7 +45,7 @@ jobs:
           version: 22
           style: "file" # Use .clang-format config file
           tidy-checks: "" # Use .clang-tidy config file
-          database: build
+          database: .build
 
           step-summary: true
           file-annotations: ${{ github.event_name != 'pull_request' }} # Using reviews on PRs

@@ -5,7 +5,7 @@ on:
   - pull_request
 
 env:
-  CPM_SOURCE_CACHE: ${{ github.workspace }}/cpm_modules
+  CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm_modules
 
 jobs:
   build:
@@ -28,20 +28,20 @@ jobs:
 
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
-          path: "**/cpm_modules"
+          path: ${{ env.CPM_SOURCE_CACHE }}
           key: ${{ github.workflow }}-cpm-modules-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
 
       - name: Install dependencies
         uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
 
       - name: configure
-        run: cmake -Stest -Bbuild -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
+        run: cmake -Stest -B.build -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
 
       - name: build
-        run: cmake --build build -j $(nproc)
+        run: cmake --build .build -j $(nproc)
 
       - name: test
-        run: ctest --test-dir build --build-config Debug -j $(nproc) --output-on-failure --output-junit junit.xml
+        run: ctest --test-dir .build --build-config Debug -j $(nproc) --output-on-failure --output-junit junit.xml
 
       - name: collect code coverage
         if: ${{ matrix.os.id != 'windows-2025-vs2026' }}
