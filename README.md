@@ -86,13 +86,6 @@ cmake --build build/test --target format
 cmake --build build/test --target fix-format
 ```
 
-See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
-These dependencies can be easily installed using pip.
-
-```bash
-pip install clang-format==14.0.6 cmake_format==0.6.11 pyyaml
-```
-
 ### Build the documentation
 
 The documentation is automatically built and [published](https://thelartians.github.io/ModernCppStarter) whenever a [GitHub Release](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository) is created.
