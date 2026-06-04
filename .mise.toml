@@ -1,0 +1,4 @@
+[tools]
+# Build Tools
+cmake = "4.3.3"
+ninja = "1.13.2"
