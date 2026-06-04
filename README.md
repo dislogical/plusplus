@@ -1,9 +1,8 @@
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/MacOS/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Windows/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Style/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Install/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![codecov](https://codecov.io/gh/TheLartians/ModernCppStarter/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/ModernCppStarter)
+[![Build & Test](https://github.com/dislogical/plusplus/actions/workflows/build-test.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/build-test.yml)
+[![Standalone](https://github.com/dislogical/plusplus/actions/workflows/standalone.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/standalone.yml)
+[![Install](https://github.com/dislogical/plusplus/actions/workflows/install.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/install.yml)
+[![Style](https://github.com/dislogical/plusplus/actions/workflows/style.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/style.yml)
+[![codecov](https://codecov.io/gh/dislogical/plusplus/graph/badge.svg?token=YN4NSQ3W1J)](https://codecov.io/gh/dislogical/plusplus)
 
 <p align="center">
   <img src="https://repository-images.githubusercontent.com/254842585/4dfa7580-7ffb-11ea-99d0-46b8fe2f4170" height="175" width="auto" />
