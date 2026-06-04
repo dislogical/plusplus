@@ -17,7 +17,7 @@ jobs:
     name: Build and publish documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
@@ -29,7 +29,7 @@ jobs:
           pip3 install jinja2==3.1.6 Pygments==2.19.1
 
       - name: Install Doxygen
-        uses: ssciwr/doxygen-install@v1
+        uses: ssciwr/doxygen-install@f13be1686235deee0aeb6cdf56640170691dc96b # v1
         with:
             version: "1.13.2"
       
@@ -39,7 +39,7 @@ jobs:
           cmake --build build --target GenerateDocs
 
       - name: Publish
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/doxygen/html
