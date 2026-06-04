@@ -6,3 +6,4 @@ CMAKE_CXX_COMPILER = "clang++"
 # Build Tools
 cmake = "4.3.3"
 ninja = "1.13.2"
+"github:doxygen/doxygen" = "Release_1_17_0"
