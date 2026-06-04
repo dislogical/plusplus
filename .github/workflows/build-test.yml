@@ -37,7 +37,7 @@ jobs:
         run: cmake --build build -j $(nproc)
 
       - name: test
-        run: ctest --test-dir build --build-config Debug -j $(nproc) --output-on-failure
+        run: ctest --test-dir build --build-config Debug -j $(nproc) --output-on-failure --output-junit junit.xml
 
       - name: collect code coverage
         if: ${{ matrix.os.id != 'windows-2025-vs2026' }}
@@ -45,3 +45,12 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           report_type: coverage
+          fail_ci_if_error: true
+
+      - name: collect test results
+        if: ${{ !cancelled() }}
+        uses: codecov/codecov-action@v6
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          report_type: test_results
+          fail_ci_if_error: true
