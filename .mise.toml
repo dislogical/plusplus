@@ -1,3 +1,7 @@
+[env]
+CMAKE_C_COMPILER = "clang"
+CMAKE_CXX_COMPILER = "clang++"
+
 [tools]
 # Build Tools
 cmake = "4.3.3"
