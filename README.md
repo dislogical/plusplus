@@ -1,5 +1,4 @@
 [![Build & Test](https://github.com/dislogical/plusplus/actions/workflows/build-test.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/build-test.yml)
-[![Standalone](https://github.com/dislogical/plusplus/actions/workflows/standalone.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/standalone.yml)
 [![Install](https://github.com/dislogical/plusplus/actions/workflows/install.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/install.yml)
 [![Style](https://github.com/dislogical/plusplus/actions/workflows/style.yml/badge.svg)](https://github.com/dislogical/plusplus/actions/workflows/style.yml)
 [![codecov](https://codecov.io/gh/dislogical/plusplus/graph/badge.svg?token=YN4NSQ3W1J)](https://codecov.io/gh/dislogical/plusplus)

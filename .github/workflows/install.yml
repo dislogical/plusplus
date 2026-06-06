@@ -31,15 +31,6 @@ jobs:
 
       - name: Build and install library
         run: |
-          cmake -S. -B.build -DCMAKE_BUILD_TYPE=Release
+          cmake --preset release -B.build
           sudo cmake --build .build --target install
           rm -rf .build
-
-      - name: Configure
-        run: cmake -Stest -B.build -DTEST_INSTALLED_VERSION=1
-
-      - name: Build tests
-        run: cmake --build .build --config Debug -j4
-
-      - name: Test
-        run: ctest --test-dir .build --build-config Debug

@@ -1,59 +1,43 @@
-cmake_minimum_required(VERSION 4.3)
-
-project(plusplusTests LANGUAGES CXX)
-
 # ---- Options ----
 
 option(ENABLE_TEST_COVERAGE "Enable test coverage" OFF)
-option(TEST_INSTALLED_VERSION "Test the version found by find_package" OFF)
 
-# --- Import tools ----
-
-include(../cmake/tools.cmake)
+set(EXECUTABLE_NAME plusplus-test)
 
 # ---- Dependencies ----
 
-include(../cmake/CPM.cmake)
-
 CPMAddPackage("gh:doctest/doctest@2.5.2")
-
-if(TEST_INSTALLED_VERSION)
-  find_package(plusplus REQUIRED)
-else()
-  CPMAddPackage(NAME plusplus SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-endif()
 
 # ---- Create binary ----
 
 file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
-add_executable(${PROJECT_NAME} ${sources})
-target_link_libraries(${PROJECT_NAME} doctest::doctest plusplus::plusplus)
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
+add_executable(${EXECUTABLE_NAME}
+  source/greeter.cpp
+  source/main.cpp
+)
+target_link_libraries(${EXECUTABLE_NAME} doctest::doctest plusplus::plusplus)
+set_target_properties(${EXECUTABLE_NAME} PROPERTIES CXX_STANDARD 17)
 
 # enable compiler warnings
-if(NOT TEST_INSTALLED_VERSION)
-  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(plusplus PUBLIC -Wall -Wpedantic -Wextra -Werror)
-  elseif(MSVC)
-    target_compile_options(plusplus PUBLIC /W4 /WX)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
-  endif()
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+  target_compile_options(${EXECUTABLE_NAME} PUBLIC -Wall -Wpedantic -Wextra -Werror)
+elseif(MSVC)
+  target_compile_options(${EXECUTABLE_NAME} PUBLIC /W4 /WX)
+  target_compile_definitions(${EXECUTABLE_NAME} PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
 endif()
 
 # ---- Add plusplusTests ----
 
-enable_testing()
-
 # Note: doctest and similar testing frameworks can automatically configure CMake tests. For other
-# testing frameworks add the tests target instead: add_test(NAME ${PROJECT_NAME} COMMAND
-# ${PROJECT_NAME})
+# testing frameworks add the tests target instead: add_test(NAME ${EXECUTABLE_NAME} COMMAND
+# ${EXECUTABLE_NAME})
 
 include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-doctest_discover_tests(${PROJECT_NAME})
+doctest_discover_tests(${EXECUTABLE_NAME})
 
 # ---- code coverage ----
 
 if(ENABLE_TEST_COVERAGE)
-  target_compile_options(plusplus PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(plusplus PUBLIC -fprofile-arcs -ftest-coverage)
+  target_compile_options(${EXECUTABLE_NAME} PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
+  target_link_options(${EXECUTABLE_NAME} PUBLIC -fprofile-arcs -ftest-coverage)
 endif()

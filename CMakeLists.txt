@@ -2,10 +2,9 @@ cmake_minimum_required(VERSION 4.3)
 
 # ---- Project ----
 
-# Note: update this to your new project's name and version
 project(
   plusplus
-  VERSION 1.0
+  VERSION 0.1
   LANGUAGES CXX
 )
 
@@ -76,3 +75,14 @@ packageProject(
   COMPATIBILITY SameMajorVersion
   DEPENDENCIES "fmt 10.2.1"
 )
+
+# ---- Include app ----
+
+add_subdirectory(app)
+
+# ---- Include tests ----
+
+include(CTest)
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()
