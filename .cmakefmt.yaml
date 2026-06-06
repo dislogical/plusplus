@@ -1,0 +1,223 @@
+# yaml-language-server: $schema=https://cmakefmt.dev/schemas/latest/schema.json
+
+format:
+  # Maximum rendered line width before cmakefmt wraps a call.
+  line_width: 100
+
+  # Number of spaces per indentation level when use_tabs is false.
+  tab_size: 2
+
+  # Return an error if any formatted line exceeds line_width.
+  require_valid_layout: true
+
+  # Sort arguments in keyword sections marked sortable in the command spec.
+  enable_sort: true
+
+  # Heuristically sort keyword sections where all arguments are simple unquoted tokens.
+  autosort: true
+
+  # Put the closing ')' on its own line when a call wraps.
+  dangle_parens: true
+
+  # Output casing for command names: lower, upper, or unchanged.
+  command_case: unchanged
+
+markup:
+  # Enable markup-aware comment handling.
+  enable_markup: true
+
+  # Preserve the first comment block in a file literally.
+  first_comment_is_literal: true
+
+  # Preferred bullet character when normalizing markup lists.
+  bullet_char: "*"
+
+  # Preferred punctuation for numbered lists when normalizing markup.
+  enum_char: "."
+
+# Uncomment and edit a block like this to override formatting knobs
+# for a specific command. This changes layout behavior for that
+# command name only; it does not define new command syntax.
+#
+# per_command_overrides:
+#   my_add_test:
+#     # Override the line width just for this command.
+#     line_width: 120
+#
+#     # Override command casing just for this command.
+#     command_case: unchanged
+#
+#     # Override keyword casing just for this command.
+#     keyword_case: upper
+#
+#     # Override indentation width just for this command.
+#     tab_size: 4
+#
+#     # Override dangling-paren placement just for this command.
+#     dangle_parens: false
+#
+#     # Override dangling-paren alignment just for this command.
+#     dangle_align: prefix
+#
+#     # Override the positional-argument hanging-wrap threshold just for this command.
+#     max_hanging_wrap_positional_args: 8
+#
+#     # Override the subgroup hanging-wrap threshold just for this command.
+#     max_hanging_wrap_groups: 3
+
+# YAML custom-command specs live under commands:<name>. Command
+# specs tell the formatter which tokens are positional arguments,
+# standalone flags, and keyword sections.
+#
+# Example: a custom test command with a flag and four keyword sections.
+# Uncomment this block to teach cmakefmt the argument structure.
+#
+# commands:
+#   my_add_test:
+#     pargs: 0
+#     flags:
+#       - VERBOSE
+#     kwargs:
+#       NAME:
+#         nargs: 1
+#       SOURCES:
+#         nargs: "+"
+#       LIBRARIES:
+#         nargs: "+"
+#       TIMEOUT:
+#         nargs: 1
+
+commands:
+  cpmaddpackage:
+    kwargs: &cpmaddpackagekwargs
+      DOWNLOAD_COMMAND:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      DOWNLOAD_NAME:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      DOWNLOAD_NO_EXTRACT:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      DOWNLOAD_ONLY:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      FIND_PACKAGE_ARGUMENTS:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      FORCE:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      GITHUB_REPOSITORY:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      GITLAB_REPOSITORY:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      GIT_REPOSITORY:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      GIT_SHALLOW:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      GIT_TAG:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      HTTP_PASSWORD:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      HTTP_USERNAME:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      NAME:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      NO_CACHE:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      OPTIONS:
+        nargs: +
+        sortable: false
+        no_autosort: false
+      SOURCE_DIR:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      SVN_REPOSITORY:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      SVN_REVISION:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      URL:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      URL_HASH:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      URL_MD5:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      VERSION:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+  cpmfindpackage: *cpmaddpackagekwargs
+  packageproject:
+    kwargs:
+      BINARY_DIR:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      COMPATIBILITY:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      DEPENDENCIES:
+        nargs: +
+        sortable: false
+        no_autosort: false
+      INCLUDE_DESTINATION:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      INCLUDE_DIR:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      NAME:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      NAMESPACE:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      VERSION:
+        nargs: 1
+        sortable: false
+        no_autosort: false
+      VERSION_HEADER:
+        nargs: 1
+        sortable: false
+        no_autosort: false
