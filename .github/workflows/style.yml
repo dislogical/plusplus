@@ -36,7 +36,11 @@ jobs:
       - name: Configure
         run: cmake -Stest -B.build
 
-      - name: Lint
+      - uses: j178/prek-action@v2
+        with:
+          extra-args: --skip clang-format,zizmor
+
+      - name: Lint C++
         uses: cpp-linter/cpp-linter-action@77c390c5ba9c947ebc185a3e49cc754f1558abb5 # v2
         id: linter
         env:

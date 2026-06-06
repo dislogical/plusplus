@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://www.schemastore.org/clang-tidy.json
+Checks: "clang-analyzer-*"
+FormatStyle: file
+WarningsAsErrors: "*"
+SystemHeaders: false
