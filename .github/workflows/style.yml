@@ -1,14 +1,8 @@
 name: Style
 
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    branches:
-      - master
-      - main
+  - push
+  - pull_request
 
 env:
   CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm_modules

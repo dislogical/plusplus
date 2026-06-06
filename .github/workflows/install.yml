@@ -1,14 +1,8 @@
 name: Install
 
 on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    branches:
-      - master
-      - main
+  - push
+  - pull_request
 
 env:
   CTEST_OUTPUT_ON_FAILURE: 1
