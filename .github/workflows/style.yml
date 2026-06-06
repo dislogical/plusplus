@@ -32,7 +32,7 @@ jobs:
 
       - uses: j178/prek-action@v2
         with:
-          extra-args: --skip clang-format,zizmor
+          extra-args: --skip clang-format,cmakefmt-fix,zizmor
 
       - name: Lint C++
         uses: cpp-linter/cpp-linter-action@77c390c5ba9c947ebc185a3e49cc754f1558abb5 # v2
@@ -49,6 +49,12 @@ jobs:
           file-annotations: ${{ github.event_name != 'pull_request' }} # Using reviews on PRs
           lines-changed-only: ${{ github.event_name == 'pull_request' }}
           tidy-review: true
+
+      - name: Lint CMake
+        uses: cmakefmt/cmakefmt-action@v2.2.0
+        with:
+          mode: check
+          scope: ${{ github.event_name == 'pull_request' && 'changed' || 'all' }}
 
       - name: Fail if checks failed
         if: steps.linter.outputs.checks-failed > 0

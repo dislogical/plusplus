@@ -37,6 +37,11 @@ repos:
     hooks:
       - id: actionlint
 
+  - repo: https://github.com/cmakefmt/cmakefmt
+    rev: v1.6.0
+    hooks:
+      - id: cmakefmt-fix
+
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.10.1
     hooks:

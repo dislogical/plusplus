@@ -14,8 +14,6 @@ CPMAddPackage(
 
 file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 
-add_executable(${EXECUTABLE_NAME}
-  source/main.cpp
-)
+add_executable(${EXECUTABLE_NAME} source/main.cpp)
 set_target_properties(${EXECUTABLE_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "plusplus")
 target_link_libraries(${EXECUTABLE_NAME} plusplus::plusplus cxxopts)
