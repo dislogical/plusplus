@@ -36,7 +36,7 @@ jobs:
       - name: Configure
         run: cmake -Stest -B.build
 
-      - uses: j178/prek-action@v2
+      - uses: j178/prek-action@bdca6f102f98e2b4c7029491a53dfd366469e33d # v2
         with:
           extra-args: --skip clang-format,zizmor
 
