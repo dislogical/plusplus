@@ -35,7 +35,7 @@ jobs:
           extra-args: --skip clang-format,cmakefmt-fix,zizmor
 
       - name: Lint C++
-        uses: cpp-linter/cpp-linter-action@77c390c5ba9c947ebc185a3e49cc754f1558abb5 # v2
+        uses: cpp-linter/cpp-linter-action@cab1143a2c149bc41e85b070a9de81716974c18f # v2
         id: linter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
