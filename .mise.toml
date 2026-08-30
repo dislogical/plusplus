@@ -11,4 +11,4 @@ ninja = "1.13.2"
 # Developer tools
 prek = "0.4.4"
 "github:cmakefmt/cmakefmt" = "1.6.0"
-"github:zizmorcore/zizmor" = "1.25.2"
+"github:zizmorcore/zizmor" = "1.30.0"
