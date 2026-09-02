@@ -9,6 +9,6 @@ ninja = "1.13.2"
 "github:doxygen/doxygen" = "Release_1_17_0"
 
 # Developer tools
-prek = "0.4.4"
+prek = "0.5.2"
 "github:cmakefmt/cmakefmt" = "1.6.0"
 "github:zizmorcore/zizmor" = "1.25.2"
